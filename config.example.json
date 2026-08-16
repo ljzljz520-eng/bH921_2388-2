@@ -1,0 +1,5 @@
+{
+  "address": "127.0.0.1:8080",
+  "admin_token": "replace-before-deployment",
+  "data_file": "var/wedding-live.json"
+}

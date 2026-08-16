@@ -1,0 +1,35 @@
+{
+  "next_account_id": 2,
+  "next_room_id": 2,
+  "next_photo_id": 3,
+  "next_export_id": 1,
+  "accounts": [
+    {
+      "id": "acct-001",
+      "name": "现场摄影师",
+      "token": "photo-token-001"
+    }
+  ],
+  "rooms": [
+    {
+      "id": "room-001",
+      "title": "林悦与周然的婚礼",
+      "owner_id": "acct-001",
+      "photos": [
+        {
+          "id": "photo-001",
+          "name": "arrival.jpg",
+          "caption": "宾客抵达",
+          "content_base64": "aW1hZ2UtYnl0ZXMtMDE="
+        },
+        {
+          "id": "photo-002",
+          "name": "ceremony.jpg",
+          "caption": "仪式开始",
+          "content_base64": "aW1hZ2UtYnl0ZXMtMDI="
+        }
+      ]
+    }
+  ],
+  "exports": []
+}
