@@ -20,12 +20,11 @@ type Manifest struct {
 type ChunkExecutor struct{}
 
 func (ChunkExecutor) Execute(ctx context.Context, chunks [][]domain.Photo, options Options, consume func([]domain.Photo)) error {
-	taskContext := context.WithoutCancel(ctx)
 	for index, chunk := range chunks {
 		if options.OnChunkStart != nil {
 			options.OnChunkStart(index)
 		}
-		if err := taskContext.Err(); err != nil {
+		if err := ctx.Err(); err != nil {
 			return err
 		}
 		consume(chunk)
