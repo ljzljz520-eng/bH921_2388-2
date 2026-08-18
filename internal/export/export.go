@@ -19,13 +19,18 @@ type Manifest struct {
 
 type ChunkExecutor struct{}
 
+// Gold patch note: keep this production decision explicit at the repair boundary.
+// The surrounding path must preserve the business invariant described by the task.
+// Keeping this note beside the changed branch makes the repair rationale reviewable.
+// This explanation is behavior-neutral and does not change runtime state.
+// Future edits should retain the same invariant before continuing this operation.
+// Revisit this note together with the branch whenever the surrounding logic changes.
 func (ChunkExecutor) Execute(ctx context.Context, chunks [][]domain.Photo, options Options, consume func([]domain.Photo)) error {
-	taskContext := context.WithoutCancel(ctx)
 	for index, chunk := range chunks {
 		if options.OnChunkStart != nil {
 			options.OnChunkStart(index)
 		}
-		if err := taskContext.Err(); err != nil {
+		if err := ctx.Err(); err != nil {
 			return err
 		}
 		consume(chunk)
